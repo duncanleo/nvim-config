@@ -3,7 +3,7 @@ call plug#begin('~/.vim/plugged')
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'dense-analysis/ale'
 Plug 'sheerun/vim-polyglot'
-Plug '/usr/local/opt/fzf'
+Plug '/opt/homebrew/opt/fzf'
 Plug 'neoclide/jsonc.vim'
 Plug 'junegunn/fzf.vim'
 Plug 'ryanoasis/vim-devicons'
