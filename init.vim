@@ -20,6 +20,7 @@ let g:coc_global_extensions = [
                   \ 'coc-go',
                   \ 'coc-json',
                   \ 'coc-yaml',
+                  \ 'coc-phpls',
                   \ ]
 
 " coc-explorer
@@ -34,7 +35,8 @@ let g:ale_fixers = {
       \ 'javascriptreact': ['prettier', 'eslint'],
       \ 'typescript': ['eslint'],
       \ 'typescriptreact': ['eslint'],
-      \ 'go': ['gofmt']
+      \ 'go': ['gofmt'],
+      \ 'php': ['php_cs_fixer']
       \ }
 let g:ale_fix_on_save = 1
 
