@@ -40,6 +40,8 @@ let g:ale_fixers = {
       \ }
 let g:ale_fix_on_save = 1
 
+command! -nargs=? Fold :call     CocAction('fold', <f-args>)
+
 " tsconfig.json is actually jsonc, help TypeScript set the correct filetype
 autocmd BufRead,BufNewFile tsconfig.json set filetype=jsonc
 
