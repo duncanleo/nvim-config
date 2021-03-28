@@ -15,7 +15,7 @@ call plug#end()
 let g:coc_global_extensions = [
                   \ 'coc-tsserver',
                   \ 'coc-explorer',
-                  \ 'coc-python',
+                  \ 'coc-pyright',
                   \ 'coc-solargraph',
                   \ 'coc-go',
                   \ 'coc-json',
@@ -44,6 +44,9 @@ command! -nargs=? Fold :call     CocAction('fold', <f-args>)
 
 " tsconfig.json is actually jsonc, help TypeScript set the correct filetype
 autocmd BufRead,BufNewFile tsconfig.json set filetype=jsonc
+
+" disable python recommended styles built into vim
+let g:python_recommended_style = 0
 
 " others
 set mouse=a
