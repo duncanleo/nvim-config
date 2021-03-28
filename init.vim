@@ -36,7 +36,7 @@ let g:ale_fixers = {
       \ 'typescript': ['eslint'],
       \ 'typescriptreact': ['eslint'],
       \ 'go': ['gofmt'],
-      \ 'php': ['php_cs_fixer']
+      \ 'php': ['php_cs_fixer'],
       \ }
 let g:ale_fix_on_save = 1
 
