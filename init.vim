@@ -21,6 +21,7 @@ let g:coc_global_extensions = [
                   \ 'coc-json',
                   \ 'coc-yaml',
                   \ 'coc-phpls',
+                  \ 'coc-git',
                   \ ]
 
 " coc-explorer
