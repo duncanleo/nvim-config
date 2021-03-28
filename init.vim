@@ -50,6 +50,40 @@ autocmd BufRead,BufNewFile tsconfig.json set filetype=jsonc
 " disable python recommended styles built into vim
 let g:python_recommended_style = 0
 
+" functions for lightline status
+
+function! CocCurrentFunction()
+    return get(b:, 'coc_current_function', '')
+endfunction
+
+function! LightlineGitBlame() abort
+  let blame = get(b:, 'coc_git_blame', '')
+  " return blame
+  return winwidth(0) > 120 ? blame : ''
+endfunction
+
+" lightline
+let g:lightline = {
+  \ 'active': {
+  \   'left': [
+  \     [ 'mode', 'paste' ],
+  \     [ 'ctrlpmark', 'git', 'diagnostic', 'cocstatus', 'filename', 'method' ]
+  \   ],
+  \   'right':[
+  \     [ 'filetype', 'fileencoding', 'lineinfo', 'percent' ],
+  \     [ 'blame' ]
+  \   ],
+  \ },
+  \ 'component_function': {
+  \   'blame': 'LightlineGitBlame',
+  \   'cocstatus': 'coc#status',
+  \   'currentfunction': 'CocCurrentFunction'
+  \ }
+\ }
+
+" disable the native vim 'INSERT' etc because lightline already shows it
+set noshowmode
+
 " others
 set mouse=a
 set backspace=indent,eol,start
@@ -71,3 +105,4 @@ set updatetime=500
 colorscheme gruvbox
 
 source $HOME/.config/nvim/plug-config/coc.vim
+
