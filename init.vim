@@ -8,6 +8,7 @@ Plug 'neoclide/jsonc.vim'
 Plug 'junegunn/fzf.vim'
 Plug 'ryanoasis/vim-devicons'
 Plug 'morhetz/gruvbox'
+Plug 'itchyny/lightline.vim'
 
 call plug#end()
 
