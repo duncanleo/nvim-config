@@ -2,6 +2,7 @@
   "tsserver.maxTsServerMemory": 1536,
   "explorer.width": 30,
   "explorer.icon.enableNerdfont": true,
+  "explorer.file.autoReveal": true,
   "explorer.previewAction.onHover": false,
   "explorer.keyMappings.global": {
     "<cr>": ["expandable?", "expand", "open"],
