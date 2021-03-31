@@ -63,6 +63,14 @@ function! LightlineGitBlame() abort
   return winwidth(0) > 120 ? blame : ''
 endfunction
 
+function! LightlineFileName()
+  let l:filePath = expand('%:.')
+  if winwidth(0) > 120
+      return l:filePath
+  else
+      return pathshorten(l:filePath)
+  endif
+endfunction
 
 " lightline
 let g:lightline = {
@@ -80,7 +88,8 @@ let g:lightline = {
   \   'component_function': {
   \     'blame': 'LightlineGitBlame',
   \     'cocstatus': 'coc#status',
-  \     'currentfunction': 'CocCurrentFunction'
+  \     'currentfunction': 'CocCurrentFunction',
+  \     'filename': 'LightlineFileName',
   \   },
   \   'component_expand': {
   \     'linter_checking': 'lightline#ale#checking',
