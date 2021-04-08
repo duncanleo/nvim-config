@@ -5,7 +5,8 @@
     "javascriptreact",
     "typescript",
     "typescriptreact",
-    "go"
+    "go",
+    "php"
   ],
   "tsserver.maxTsServerMemory": 1536,
   "eslint.alwaysShowStatus": true,
