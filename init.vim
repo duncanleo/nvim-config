@@ -39,7 +39,6 @@ let g:loaded_netrw       = 1
 let g:loaded_netrwPlugin = 1
 
 let g:ale_fixers = {
-      \ 'go': ['gofmt'],
       \ 'php': ['php_cs_fixer'],
       \ }
 let g:ale_fix_on_save = 1
