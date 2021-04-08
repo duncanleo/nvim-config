@@ -1,7 +1,6 @@
 call plug#begin('~/.vim/plugged')
 
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
-Plug 'dense-analysis/ale'
 Plug 'sheerun/vim-polyglot'
 Plug '/opt/homebrew/opt/fzf'
 Plug 'neoclide/jsonc.vim'
@@ -9,7 +8,6 @@ Plug 'junegunn/fzf.vim'
 Plug 'ryanoasis/vim-devicons'
 Plug 'morhetz/gruvbox'
 Plug 'itchyny/lightline.vim'
-Plug 'maximbaz/lightline-ale'
 Plug 'bagrat/vim-buffet'
 Plug 'honza/vim-snippets'
 
@@ -37,11 +35,6 @@ autocmd VimEnter * CocCommand explorer
 " disable netrw
 let g:loaded_netrw       = 1
 let g:loaded_netrwPlugin = 1
-
-let g:ale_fixers = {
-      \ }
-let g:ale_fix_on_save = 1
-let g:ale_disable_lsp = 1
 
 command! -nargs=? Fold :call     CocAction('fold', <f-args>)
 
@@ -96,13 +89,6 @@ let g:lightline = {
   \     'currentfunction': 'CocCurrentFunction',
   \     'filename': 'LightlineFileName',
   \   },
-  \   'component_expand': {
-  \     'linter_checking': 'lightline#ale#checking',
-  \     'linter_infos': 'lightline#ale#infos',
-  \     'linter_warnings': 'lightline#ale#warnings',
-  \     'linter_errors': 'lightline#ale#errors',
-  \     'linter_ok': 'lightline#ale#ok',
-  \   },
   \   'component_type': {
   \     'linter_checking': 'right',
   \     'linter_infos': 'right',
@@ -114,13 +100,6 @@ let g:lightline = {
 
 " disable the native vim 'INSERT' etc because lightline already shows it
 set noshowmode
-
-" lightline ale use icons
-let g:lightline#ale#indicator_checking = "\uf110"
-let g:lightline#ale#indicator_infos = "\uf129"
-let g:lightline#ale#indicator_warnings = "\uf071"
-let g:lightline#ale#indicator_errors = "\uf05e"
-let g:lightline#ale#indicator_ok = "\uf00c"
 
 " vim-buffet configuration
 let g:buffet_use_devicons	= 1
