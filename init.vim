@@ -41,6 +41,10 @@ command! -nargs=? Fold :call     CocAction('fold', <f-args>)
 " tsconfig.json is actually jsonc, help TypeScript set the correct filetype
 autocmd BufRead,BufNewFile tsconfig.json set filetype=jsonc
 
+let g:coc_filetype_map = {
+  \ 'yaml.docker-compose': 'yaml',
+  \ }
+
 command Format :call CocActionAsync('format')
 
 " disable python recommended styles built into vim

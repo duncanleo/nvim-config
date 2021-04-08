@@ -29,5 +29,6 @@
     "typescript": ["javascript"],
     "typescriptreact": ["javascriptreact", "javascript"]
   },
-  "snippets.enableStatusItem": true
+  "snippets.enableStatusItem": true,
+  "yaml.schemaStore.enable": true
 }
