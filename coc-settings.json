@@ -9,5 +9,11 @@
     "v": "open:vsplit"
   },
   "explorer.file.showHiddenFiles": true,
-  "git.addGBlameToBufferVar": true
+  "git.addGBlameToBufferVar": true,
+  "snippets.extends": {
+    "javascriptreact": ["javascript"],
+    "typescript": ["javascript"],
+    "typescriptreact": ["javascriptreact", "javascript"]
+  },
+  "snippets.enableStatusItem": true
 }

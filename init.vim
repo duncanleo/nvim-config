@@ -11,6 +11,7 @@ Plug 'morhetz/gruvbox'
 Plug 'itchyny/lightline.vim'
 Plug 'maximbaz/lightline-ale'
 Plug 'bagrat/vim-buffet'
+Plug 'honza/vim-snippets'
 
 call plug#end()
 
@@ -25,6 +26,7 @@ let g:coc_global_extensions = [
                   \ 'coc-yaml',
                   \ 'coc-phpls',
                   \ 'coc-git',
+                  \ 'coc-snippets',
                   \ ]
 
 " coc-explorer
