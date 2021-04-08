@@ -27,6 +27,7 @@ let g:coc_global_extensions = [
                   \ 'coc-phpls',
                   \ 'coc-git',
                   \ 'coc-snippets',
+                  \ 'coc-eslint',
                   \ ]
 
 " coc-explorer
