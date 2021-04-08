@@ -28,6 +28,7 @@ let g:coc_global_extensions = [
                   \ 'coc-git',
                   \ 'coc-snippets',
                   \ 'coc-eslint',
+                  \ 'coc-prettier',
                   \ ]
 
 " coc-explorer
