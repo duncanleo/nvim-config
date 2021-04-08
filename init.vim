@@ -50,7 +50,7 @@ command! -nargs=? Fold :call     CocAction('fold', <f-args>)
 " tsconfig.json is actually jsonc, help TypeScript set the correct filetype
 autocmd BufRead,BufNewFile tsconfig.json set filetype=jsonc
 
-command ESLintFix :call CocActionAsync('runCommand', 'eslint.executeAutofix')
+command Format :call CocActionAsync('format')
 
 " disable python recommended styles built into vim
 let g:python_recommended_style = 0
