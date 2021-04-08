@@ -45,6 +45,7 @@ let g:ale_fixers = {
       \ 'php': ['php_cs_fixer'],
       \ }
 let g:ale_fix_on_save = 1
+let g:ale_disable_lsp = 1
 
 command! -nargs=? Fold :call     CocAction('fold', <f-args>)
 
