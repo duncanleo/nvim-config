@@ -38,10 +38,6 @@ let g:loaded_netrw       = 1
 let g:loaded_netrwPlugin = 1
 
 let g:ale_fixers = {
-      \ 'javascript': ['prettier', 'eslint'],
-      \ 'javascriptreact': ['prettier', 'eslint'],
-      \ 'typescript': ['eslint'],
-      \ 'typescriptreact': ['eslint'],
       \ 'go': ['gofmt'],
       \ 'php': ['php_cs_fixer'],
       \ }
@@ -52,6 +48,8 @@ command! -nargs=? Fold :call     CocAction('fold', <f-args>)
 
 " tsconfig.json is actually jsonc, help TypeScript set the correct filetype
 autocmd BufRead,BufNewFile tsconfig.json set filetype=jsonc
+
+command ESLintFix :call CocActionAsync('runCommand', 'eslint.executeAutofix')
 
 " disable python recommended styles built into vim
 let g:python_recommended_style = 0
