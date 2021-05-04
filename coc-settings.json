@@ -11,6 +11,7 @@
   "tsserver.maxTsServerMemory": 1536,
   "eslint.alwaysShowStatus": true,
   "prettier.eslintIntegration": true,
+  "prettier.ignorePath": ".prettierignore",
   "explorer.width": 30,
   "explorer.icon.enableNerdfont": true,
   "explorer.file.autoReveal": true,
