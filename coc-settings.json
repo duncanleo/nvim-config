@@ -31,5 +31,6 @@
     "typescriptreact": ["javascriptreact", "javascript"]
   },
   "snippets.enableStatusItem": true,
+  "suggest.enablePreselect": false,
   "yaml.schemaStore.enable": true
 }
