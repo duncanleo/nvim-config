@@ -5,18 +5,18 @@ Plug 'sheerun/vim-polyglot'
 Plug '/opt/homebrew/opt/fzf'
 Plug 'neoclide/jsonc.vim'
 Plug 'junegunn/fzf.vim'
-Plug 'ryanoasis/vim-devicons'
 Plug 'morhetz/gruvbox'
 Plug 'itchyny/lightline.vim'
 Plug 'bagrat/vim-buffet'
 Plug 'honza/vim-snippets'
+Plug 'kyazdani42/nvim-web-devicons' " for file icons
+Plug 'kyazdani42/nvim-tree.lua'
 
 call plug#end()
 
 " coc.nvim plugins
 let g:coc_global_extensions = [
                   \ 'coc-tsserver',
-                  \ 'coc-explorer',
                   \ 'coc-pyright',
                   \ 'coc-solargraph',
                   \ 'coc-go',
@@ -30,8 +30,11 @@ let g:coc_global_extensions = [
                   \ 'coc-highlight',
                   \ ]
 
-" coc-explorer
-autocmd VimEnter * CocCommand explorer
+let g:nvim_tree_auto_open = 1
+let g:nvim_tree_auto_close = 1
+let g:nvim_tree_highlight_opened_files = 1
+let g:nvim_tree_lsp_diagnostics = 1
+nnoremap <C-n> :NvimTreeToggle<CR>
 
 " disable netrw
 let g:loaded_netrw       = 1
