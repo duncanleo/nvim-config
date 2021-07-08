@@ -30,6 +30,8 @@ let g:coc_global_extensions = [
                   \ 'coc-highlight',
                   \ ]
 
+lua  require('nvim_tree')
+
 let g:nvim_tree_auto_open = 1
 let g:nvim_tree_auto_close = 1
 let g:nvim_tree_highlight_opened_files = 1
