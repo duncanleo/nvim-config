@@ -39,6 +39,8 @@ let g:nvim_tree_lsp_diagnostics = 1
 let g:nvim_tree_follow = 1
 autocmd BufEnter NvimTree set cursorline
 nnoremap <C-n> :NvimTreeToggle<CR>
+" focus back to nvim_tree pane
+nnoremap <C-e> :sb NvimTree<CR>
 
 " disable netrw
 let g:loaded_netrw       = 1
@@ -149,6 +151,7 @@ set background=dark
 set splitright
 set splitbelow
 set updatetime=500
+set switchbuf=useopen,usetab
 colorscheme gruvbox
 
 source $HOME/.config/nvim/plug-config/coc.vim
