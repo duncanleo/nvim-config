@@ -30,13 +30,14 @@ let g:coc_global_extensions = [
                   \ 'coc-highlight',
                   \ ]
 
+" nvim_tree
 lua  require('nvim_tree')
-
 let g:nvim_tree_auto_open = 1
 let g:nvim_tree_auto_close = 1
 let g:nvim_tree_highlight_opened_files = 1
 let g:nvim_tree_lsp_diagnostics = 1
 let g:nvim_tree_follow = 1
+autocmd BufEnter NvimTree set cursorline
 nnoremap <C-n> :NvimTreeToggle<CR>
 
 " disable netrw
@@ -151,4 +152,3 @@ set updatetime=500
 colorscheme gruvbox
 
 source $HOME/.config/nvim/plug-config/coc.vim
-
