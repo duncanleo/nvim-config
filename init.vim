@@ -24,6 +24,8 @@ let g:coc_global_extensions = [
                   \ 'coc-yaml',
                   \ 'coc-phpls',
                   \ 'coc-git',
+                  \ 'coc-html',
+                  \ 'coc-css',
                   \ 'coc-snippets',
                   \ 'coc-eslint',
                   \ 'coc-prettier',
