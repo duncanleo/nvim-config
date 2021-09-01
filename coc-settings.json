@@ -6,7 +6,8 @@
     "typescript",
     "typescriptreact",
     "go",
-    "php"
+    "php",
+    "vue"
   ],
   "tsserver.maxTsServerMemory": 1536,
   "eslint.alwaysShowStatus": true,
