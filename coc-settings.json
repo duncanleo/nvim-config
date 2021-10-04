@@ -13,15 +13,6 @@
   "eslint.alwaysShowStatus": true,
   "prettier.eslintIntegration": true,
   "prettier.ignorePath": ".prettierignore",
-  "explorer.width": 30,
-  "explorer.icon.enableNerdfont": true,
-  "explorer.file.autoReveal": true,
-  "explorer.previewAction.onHover": false,
-  "explorer.keyMappings.global": {
-    "<cr>": ["expandable?", "expand", "open"],
-    "v": "open:vsplit"
-  },
-  "explorer.file.showHiddenFiles": true,
   "python.linting.enabled": true,
   "git.addGBlameToBufferVar": true,
   "python.pythonPath": "python3",
