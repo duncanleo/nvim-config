@@ -9,7 +9,7 @@
     "php",
     "vue"
   ],
-  "tsserver.maxTsServerMemory": 1536,
+  "tsserver.maxTsServerMemory": 2048,
   "eslint.alwaysShowStatus": true,
   "prettier.eslintIntegration": true,
   "prettier.ignorePath": ".prettierignore",
