@@ -34,13 +34,9 @@ let g:coc_global_extensions = [
                   \ ]
 
 " nvim_tree
+autocmd BufWinEnter NvimTree set cursorline
 lua  require('nvim_tree')
-let g:nvim_tree_auto_open = 1
-let g:nvim_tree_auto_close = 1
-let g:nvim_tree_highlight_opened_files = 1
-let g:nvim_tree_lsp_diagnostics = 1
-let g:nvim_tree_follow = 1
-autocmd BufEnter NvimTree set cursorline
+
 nnoremap <C-n> :NvimTreeToggle<CR>
 " focus back to nvim_tree pane
 nnoremap <C-e> :sb NvimTree<CR>
