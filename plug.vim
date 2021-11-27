@@ -7,7 +7,6 @@ Plug 'neoclide/jsonc.vim'
 Plug 'junegunn/fzf.vim'
 Plug 'morhetz/gruvbox'
 Plug 'nvim-lualine/lualine.nvim'
-Plug 'bagrat/vim-buffet'
 Plug 'honza/vim-snippets'
 Plug 'kyazdani42/nvim-web-devicons' " for file icons
 Plug 'kyazdani42/nvim-tree.lua'
