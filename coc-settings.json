@@ -9,6 +9,8 @@
     "php",
     "vue"
   ],
+  "diagnostic.virtualText": true,
+  "diagnostic.virtualTextCurrentLineOnly": false,
   "tsserver.maxTsServerMemory": 2048,
   "eslint.alwaysShowStatus": true,
   "prettier.eslintIntegration": true,
