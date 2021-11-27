@@ -27,3 +27,18 @@ lualine.setup {
     lualine_z = {'tabs'}
   }
 }
+
+-- https://github.com/nvim-lualine/lualine.nvim/wiki/FAQ#my-tabline-updates-infrequently
+if _G.Tabline_timer == nil then
+  _G.Tabline_timer = vim.loop.new_timer()
+else
+  _G.Tabline_timer:stop()
+end
+
+_G.Tabline_timer:start(
+  0,             -- never timeout
+  5000,          -- repeat every 5000 ms
+  vim.schedule_wrap(function() -- updater function
+     vim.api.nvim_command('redrawtabline')
+  end)
+)
