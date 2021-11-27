@@ -1,6 +1,7 @@
 runtime plug.vim
 
 lua require('coc')
+runtime coc.vim
 
 " nvim_tree
 autocmd BufWinEnter NvimTree set cursorline
@@ -11,12 +12,8 @@ lua require('statusline')
 let g:loaded_netrw       = 1
 let g:loaded_netrwPlugin = 1
 
-command! -nargs=? Fold :call     CocAction('fold', <f-args>)
-
 " tsconfig.json is actually jsonc, help TypeScript set the correct filetype
 autocmd BufRead,BufNewFile tsconfig.json set filetype=jsonc
-
-command Format :call CocActionAsync('format')
 
 " disable python recommended styles built into vim
 let g:python_recommended_style = 0
