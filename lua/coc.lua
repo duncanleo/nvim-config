@@ -34,3 +34,10 @@ vim.api.nvim_set_keymap(
   ":call CocActionAsync('rename')<CR>",
   { noremap = true }
 )
+
+vim.api.nvim_set_keymap(
+  'n',
+  'gd',
+  ":call CocActionAsync('jumpDefinition')<CR>",
+  { noremap = true }
+)
