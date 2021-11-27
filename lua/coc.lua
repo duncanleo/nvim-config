@@ -20,3 +20,10 @@ vim.g.coc_global_extensions = {
 vim.g.coc_filetype_map = {
   ['yaml.docker-compose'] = 'yaml',
 }
+
+vim.api.nvim_set_keymap(
+  'n',
+  'ff',
+  ":call CocActionAsync('format')<CR>",
+  { noremap = true }
+)
