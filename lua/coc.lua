@@ -48,3 +48,10 @@ vim.api.nvim_set_keymap(
   ":call CocActionAsync('doHover')<CR>",
   { noremap = true }
 )
+
+vim.api.nvim_set_keymap(
+  'n',
+  '<leader>do',
+  ":call CocActionAsync('codeAction')<CR>",
+  {}
+)
