@@ -14,6 +14,7 @@ vim.g.coc_global_extensions = {
   'coc-prettier',
   'coc-highlight',
   'coc-vetur',
+  'coc-sumneko-lua'
 }
 
 vim.g.coc_filetype_map = {
