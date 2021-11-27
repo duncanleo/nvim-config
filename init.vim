@@ -20,58 +20,6 @@ command Format :call CocActionAsync('format')
 " disable python recommended styles built into vim
 let g:python_recommended_style = 0
 
-" functions for lightline status
-
-function! CocCurrentFunction()
-    return get(b:, 'coc_current_function', '')
-endfunction
-
-function! LightlineGitBlame() abort
-  let blame = get(b:, 'coc_git_blame', '')
-  " return blame
-  return winwidth(0) > 120 ? blame : ''
-endfunction
-
-function! LightlineFileName()
-  let l:filePath = expand('%:.')
-  if winwidth(0) > 120
-      return l:filePath
-  else
-      return pathshorten(l:filePath)
-  endif
-endfunction
-
-" lightline
-let g:lightline = {
-  \   'active': {
-  \     'left': [
-  \       [ 'mode', 'paste' ],
-  \       [ 'ctrlpmark', 'git', 'diagnostic', 'cocstatus', 'filename', 'method' ]
-  \     ],
-  \     'right':[
-  \       [ 'filetype', 'fileencoding', 'lineinfo'],
-  \       [ 'linter_checking', 'linter_errors', 'linter_warnings', 'linter_infos', 'linter_ok' ],
-  \       [ 'blame' ]
-  \     ],
-  \   },
-  \   'enable': {
-  \     'tabline': 0,
-  \   },
-  \   'component_function': {
-  \     'blame': 'LightlineGitBlame',
-  \     'cocstatus': 'coc#status',
-  \     'currentfunction': 'CocCurrentFunction',
-  \     'filename': 'LightlineFileName',
-  \   },
-  \   'component_type': {
-  \     'linter_checking': 'right',
-  \     'linter_infos': 'right',
-  \     'linter_warnings': 'warning',
-  \     'linter_errors': 'error',
-  \     'linter_ok': 'right',
-  \   }
-  \ }
-
 " disable the native vim 'INSERT' etc because lightline already shows it
 set noshowmode
 
