@@ -4,7 +4,8 @@ lua require('coc')
 
 " nvim_tree
 autocmd BufWinEnter NvimTree set cursorline
-lua  require('nvim_tree')
+lua require('nvim_tree')
+lua require('statusline')
 
 " disable netrw
 let g:loaded_netrw       = 1
