@@ -19,6 +19,7 @@ vim.g.coc_global_extensions = {
 
 vim.g.coc_filetype_map = {
   ['yaml.docker-compose'] = 'yaml',
+  ['yaml.ansible'] = 'yaml'
 }
 
 vim.api.nvim_set_keymap(

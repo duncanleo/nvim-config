@@ -26,5 +26,7 @@
   },
   "snippets.enableStatusItem": true,
   "suggest.enablePreselect": false,
-  "yaml.schemaStore.enable": true
+  "yaml.schemaStore.enable": true,
+  "yaml.format.enable": true,
+  "yaml.format.singleQuote": true
 }
