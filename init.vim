@@ -42,4 +42,3 @@ set updatetime=500
 set switchbuf=useopen,usetab
 colorscheme gruvbox
 
-source $HOME/.config/nvim/plug-config/coc.vim
