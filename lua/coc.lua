@@ -41,3 +41,10 @@ vim.api.nvim_set_keymap(
   ":call CocActionAsync('jumpDefinition')<CR>",
   { noremap = true }
 )
+
+vim.api.nvim_set_keymap(
+  'n',
+  'K',
+  ":call CocActionAsync('doHover')<CR>",
+  { noremap = true }
+)
