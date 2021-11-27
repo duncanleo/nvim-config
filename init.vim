@@ -15,6 +15,9 @@ let g:loaded_netrwPlugin = 1
 " tsconfig.json is actually jsonc, help TypeScript set the correct filetype
 autocmd BufRead,BufNewFile tsconfig.json set filetype=jsonc
 
+" map F to Files command
+command F :Files
+
 " disable python recommended styles built into vim
 let g:python_recommended_style = 0
 
