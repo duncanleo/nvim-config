@@ -6,10 +6,6 @@ lua require('coc')
 autocmd BufWinEnter NvimTree set cursorline
 lua  require('nvim_tree')
 
-nnoremap <C-n> :NvimTreeToggle<CR>
-" focus back to nvim_tree pane
-nnoremap <C-e> :sb NvimTree<CR>
-
 " disable netrw
 let g:loaded_netrw       = 1
 let g:loaded_netrwPlugin = 1
