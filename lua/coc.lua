@@ -27,3 +27,10 @@ vim.api.nvim_set_keymap(
   ":call CocActionAsync('format')<CR>",
   { noremap = true }
 )
+
+vim.api.nvim_set_keymap(
+  'n',
+  'gr',
+  ":call CocActionAsync('rename')<CR>",
+  { noremap = true }
+)
