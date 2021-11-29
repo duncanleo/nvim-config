@@ -45,6 +45,13 @@ vim.api.nvim_set_keymap(
 
 vim.api.nvim_set_keymap(
   'n',
+  'gf',
+  "<Plug>(coc-references)",
+  { }
+)
+
+vim.api.nvim_set_keymap(
+  'n',
   'K',
   ":call CocActionAsync('doHover')<CR>",
   { noremap = true }
