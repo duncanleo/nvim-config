@@ -1,5 +1,7 @@
 runtime plug.vim
 
+lua require('general')
+
 lua require('coc')
 runtime coc.vim
 
