@@ -45,5 +45,6 @@ set splitright
 set splitbelow
 set updatetime=500
 set switchbuf=useopen,usetab
+set cursorline
 colorscheme gruvbox
 
