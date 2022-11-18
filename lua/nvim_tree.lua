@@ -11,7 +11,7 @@ require'nvim-tree'.setup {
   hijack_netrw        = true,
   open_on_setup       = true,
   ignore_ft_on_setup  = {},
-  update_to_buf_dir   = {
+  hijack_directories   = {
     enable = true,
     auto_open = true,
   },
@@ -21,7 +21,6 @@ require'nvim-tree'.setup {
   diagnostics     = {
     enable = false,
   },
-  highlight_focused_file = true,
   update_focused_file = {
     enable      = true,
     update_cwd  = false,
@@ -31,11 +30,14 @@ require'nvim-tree'.setup {
     cmd  = nil,
     args = {}
   },
+  actions = {
+    open_file = {
+      resize_window = true
+    }
+  },
   view = {
     width = 28,
-    height = 30,
     side = 'left',
-    auto_resize = true,
     mappings = {
       custom_only = false,
       list = {
