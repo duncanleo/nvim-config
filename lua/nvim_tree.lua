@@ -6,11 +6,19 @@ function _G.NvimTreeOSOpen()
   end
 end
 
+local function on_attach(bufnr)
+  local api = require "nvim-tree.api"
+  api.config.mappings.default_on_attach(bufnr)
+
+  vim.keymap.set("n", "<C-o>", _G.NvimTreeOSOpen)
+  vim.keymap.set("n", "v", "vsplit")
+  vim.keymap.set("n", "s", "split")
+  vim.keymap.set("n", "<C-r>", "refresh")
+end
+
 require'nvim-tree'.setup {
   disable_netrw       = true,
   hijack_netrw        = true,
-  open_on_setup       = true,
-  ignore_ft_on_setup  = {},
   hijack_directories   = {
     enable = true,
     auto_open = true,
@@ -35,23 +43,22 @@ require'nvim-tree'.setup {
       resize_window = true
     }
   },
+  on_attach = on_attach,
   view = {
     width = 28,
     side = 'left',
-    mappings = {
-      custom_only = false,
-      list = {
-        { key ="<C-o>", cb = ":lua NvimTreeOSOpen()<cr>" },
-        { key ="v", action = "vsplit" },
-        { key ="s", action = "split" },
-        { key = "<C-r>", action = "refresh" }
-      }
-    }
   },
   git = {
     ignore = false
   },
 }
+
+local function open_nvim_tree()
+  -- open the tree
+  require("nvim-tree.api").tree.open()
+end
+
+vim.api.nvim_create_autocmd({ "VimEnter" }, { callback = open_nvim_tree })
 
 vim.api.nvim_set_keymap(
   'n',
