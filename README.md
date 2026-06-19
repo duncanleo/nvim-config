@@ -27,3 +27,43 @@ simply skipped rather than erroring:
 Clone this into `.config/nvim`. Plugins install automatically on first launch,
 pinned to the revisions in `nvim-pack-lock.json` (the `vim.pack` lockfile — keep
 it under version control so installs are reproducible).
+
+### Keybindings
+Leader is `\` (the default). Custom maps defined in this config:
+
+| Key | Mode | Action | Source |
+| --- | --- | --- | --- |
+| `<C-l>` | n | Toggle line numbers | `lua/general.lua` |
+| `\q` | n | Close current buffer, keep window/Neovim open | `lua/general.lua` |
+| `\e` | n | Show full diagnostic for the current line in a float | `lua/lsp.lua` |
+| `<C-Space>` | i | Manually trigger LSP completion | `lua/lsp.lua` |
+| `<C-t>` | n | Open the nvzone context menu | `lua/menu_setup.lua` |
+| `<RightMouse>` | n, v | Open the context menu at the click (tree-aware) | `lua/menu_setup.lua` |
+| `<C-n>` | n | Toggle the nvim-tree pane | `lua/nvim_tree.lua` |
+| `<C-e>` | n | Bring the tree back into a split if hidden | `lua/nvim_tree.lua` |
+
+Inside the **nvim-tree pane** (on top of nvim-tree's own defaults):
+
+| Key | Action | Source |
+| --- | --- | --- |
+| `<C-o>` | Reveal the node in macOS Finder (`open -R`) | `lua/nvim_tree.lua` |
+| `v` | Open the file in a vertical split | `lua/nvim_tree.lua` |
+| `s` | Open the file in a horizontal split | `lua/nvim_tree.lua` |
+| `<C-r>` | Reload / refresh the tree | `lua/nvim_tree.lua` |
+
+> LSP navigation (`grn` rename, `gra` code action, `grr` references, `gri`
+> implementation, `K` hover, etc.) uses Neovim's built-in defaults — they aren't
+> redefined here.
+
+### Closing files vs. quitting
+The tabline lists open **buffers**, but there's usually only a single editor
+window (plus the nvim-tree pane on the left). Because of that:
+- `:q` closes the editor window, leaving only the tree — and the auto-close
+  autocmd in `lua/nvim_tree.lua` then quits Neovim. So `:q` effectively quits.
+- `:bd` also closes the editor window instead of switching to your other buffer
+  while the tree is open, with the same result.
+
+To close the current file but keep the window (and Neovim) open, use **`<leader>q`**
+(leader is `\`, so `\q`). It switches the window to another listed buffer first,
+then deletes the old one (see `close_buffer` in `lua/general.lua`). Reserve `:q`
+for actually quitting, and use `:close` / `<C-w>c` to close splits.
