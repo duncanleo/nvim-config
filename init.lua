@@ -53,9 +53,18 @@ vim.opt.backupcopy = 'yes' -- write backups by copying (preserves file inode/per
 -- NOTE: the `ansi` colorscheme below forces termguicolors OFF (it's a cterm
 -- scheme), so this `true` is effectively overridden once the scheme loads.
 vim.opt.termguicolors = true
-vim.opt.background = 'dark'
+-- Leave `background` unset so Neovim's terminal detection (OSC 11) can pick
+-- light vs. dark; `ansi` keys its cursor-line colour off it. The detection
+-- response can land after the scheme loads, and Neovim doesn't re-apply a
+-- loaded scheme when `background` flips, so re-source it on change.
 vim.opt.splitright = true -- vertical splits open to the right
 vim.opt.splitbelow = true -- horizontal splits open below
 vim.opt.switchbuf = 'useopen,usetab' -- jump to an existing window/tab instead of reopening a buffer
 vim.opt.cursorline = true
 vim.cmd.colorscheme('ansi')
+vim.api.nvim_create_autocmd('OptionSet', {
+  pattern = 'background',
+  callback = function()
+    vim.cmd.colorscheme('ansi')
+  end,
+})

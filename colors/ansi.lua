@@ -11,9 +11,13 @@ if vim.fn.exists('syntax_on') == 1 then
   vim.cmd('syntax reset')
 end
 
-vim.o.background = 'dark'
 vim.o.termguicolors = false
 vim.g.colors_name = 'ansi'
+
+-- Adapt the cursor-line background to the terminal's light/dark theme. We don't
+-- force `background` here so Neovim's OSC 11 detection (or a manual
+-- `:set background=light`) can drive it; it falls back to dark when unknown.
+local light = vim.o.background == 'light'
 
 local function hi(group, opts)
   vim.api.nvim_set_hl(0, group, opts)
@@ -36,9 +40,14 @@ hi('TabLine', { ctermfg = 7, ctermbg = 0 })
 hi('TabLineFill', { ctermfg = 0 })
 hi('TabLineSel', { ctermfg = 0, ctermbg = 11 })
 hi('Title', { ctermfg = 4, cterm = { bold = true } })
-hi('CursorLine', { ctermbg = 0 })
+-- For the cursor-line band, the themeable greys (0/7/15) tend to collapse into
+-- the background — black on a dark theme, white on a light one. So pick from the
+-- fixed 256-colour greyscale ramp (232=black .. 255=near-white) instead, which
+-- terminals don't remap: 236 is a soft dark grey above black, 254 a soft light
+-- grey below white, so the band stays visible whatever the 16-colour theme is.
+hi('CursorLine', { ctermbg = light and 254 or 236 })
 hi('Cursor', { ctermfg = 0, ctermbg = 15 })
-hi('CursorColumn', { ctermbg = 0 })
+hi('CursorColumn', { ctermbg = light and 254 or 236 })
 hi('LineNr', { ctermfg = 8 })
 hi('CursorLineNr', { ctermfg = 6 })
 hi('helpLeadBlank', {})
