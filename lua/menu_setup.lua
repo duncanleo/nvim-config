@@ -29,9 +29,32 @@ vim.api.nvim_create_autocmd("FileType", {
   end,
 })
 
+-- Git blame actions for the current line, backed by git-blame.nvim commands.
+local git_blame_items = {
+  { name = "Open Commit in Browser", cmd = "GitBlameOpenCommitURL" },
+  { name = "Open File in Browser", cmd = "GitBlameOpenFileURL" },
+  { name = "separator" },
+  { name = "Copy Commit SHA", cmd = "GitBlameCopySHA" },
+  { name = "Copy Commit URL", cmd = "GitBlameCopyCommitURL" },
+  { name = "Copy PR URL", cmd = "GitBlameCopyPRURL" },
+  { name = "separator" },
+  { name = "Toggle Inline Blame", cmd = "GitBlameToggle" },
+}
+
+-- The plugin's bundled "default" menu, plus our Git Blame submenu. Deepcopy so
+-- repeated opens don't accumulate appended entries on the shared module table.
+local function default_menu()
+  local items = vim.deepcopy(require("menus.default"))
+  vim.list_extend(items, {
+    { name = "separator" },
+    { name = "󰊢 Git Blame", hl = "Exblue", items = git_blame_items },
+  })
+  return items
+end
+
 -- Keyboard users
 vim.keymap.set("n", "<C-t>", function()
-  require("menu").open("default")
+  require("menu").open(default_menu())
 end, {})
 
 -- mouse users + nvimtree users!
@@ -42,7 +65,7 @@ vim.keymap.set({ "n", "v" }, "<RightMouse>", function()
 
   -- clicked buf
   local buf = vim.api.nvim_win_get_buf(vim.fn.getmousepos().winid)
-  local options = vim.bo[buf].ft == "NvimTree" and "nvimtree" or "default"
+  local options = vim.bo[buf].ft == "NvimTree" and "nvimtree" or default_menu()
 
   require("menu").open(options, { mouse = true })
 end, {})
