@@ -25,6 +25,10 @@ simply skipped rather than erroring:
   [`vscode-langservers-extracted`](https://formulae.brew.sh/formula/vscode-langservers-extracted).
   Install with `brew install vscode-langservers-extracted`. Fix-on-save is enabled
   via the server's `codeActionOnSave` setting (see `lua/lsp.lua`).
+- **tailwindcss** — Tailwind CSS class completion & linting, served by
+  `tailwindcss-language-server`. Install with
+  `brew install tailwindcss-language-server`. Only attaches in projects with a
+  Tailwind config (see `lua/lsp.lua`).
 - **oxlint**, **oxfmt** — JS/TS linting & formatting.
 
 ### Installation

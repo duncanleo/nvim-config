@@ -10,6 +10,7 @@ local servers = {
   eslint = 'vscode-eslint-language-server',
   oxfmt = 'oxfmt',
   oxlint = 'oxlint',
+  tailwindcss = 'tailwindcss-language-server', -- brew install tailwindcss-language-server
   tsgo = 'tsgo', -- @typescript/native-preview, still a preview release
 }
 
