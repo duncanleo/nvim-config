@@ -19,6 +19,20 @@ local function available(bin)
   return root ~= nil and vim.fn.executable(root .. '/node_modules/.bin/' .. bin) == 1
 end
 
+-- Fix-on-save with ESLint, driven by the server itself: `codeActionOnSave`
+-- applies all auto-fixes (via workspace/applyEdit) on save, and `run = 'onSave'`
+-- re-lints then. Merged into nvim-lspconfig's default eslint config.
+vim.lsp.config('eslint', {
+  settings = {
+    format = true,
+    run = 'onSave',
+    codeActionOnSave = {
+      enable = true,
+      mode = 'all',
+    },
+  },
+})
+
 for server, bin in pairs(servers) do
   if available(bin) then
     vim.lsp.enable(server)

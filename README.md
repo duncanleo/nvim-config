@@ -21,7 +21,11 @@ simply skipped rather than erroring:
   `npm i -g @typescript/native-preview`, or add it as a project devDependency.
   Only enabled when a `tsgo` binary is resolvable from the launch directory
   (see `lua/lsp.lua`).
-- **eslint**, **oxlint**, **oxfmt** — JS/TS linting & formatting.
+- **eslint** — JS/TS linting, served by `vscode-eslint-language-server` from
+  [`vscode-langservers-extracted`](https://formulae.brew.sh/formula/vscode-langservers-extracted).
+  Install with `brew install vscode-langservers-extracted`. Fix-on-save is enabled
+  via the server's `codeActionOnSave` setting (see `lua/lsp.lua`).
+- **oxlint**, **oxfmt** — JS/TS linting & formatting.
 
 ### Installation
 Clone this into `.config/nvim`. Plugins install automatically on first launch,
