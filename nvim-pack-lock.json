@@ -20,6 +20,11 @@
       "src": "https://github.com/nvim-lualine/lualine.nvim",
       "version": "'221ce6b2d999187044529f49da6554a92f740a96'"
     },
+    "markview.nvim": {
+      "rev": "3537eb2a9251cad5d7718253768f3772c62233fc",
+      "src": "https://github.com/OXY2DEV/markview.nvim",
+      "version": "'v28.3.0'"
+    },
     "menu": {
       "rev": "7a0a4a2896b715c066cfbe320bdc048091874cc6",
       "src": "https://github.com/nvzone/menu",
