@@ -9,6 +9,8 @@ vim.g.gitblame_display_virtual_text = 0
 -- Blame: author, relative time, and the commit summary.
 vim.g.gitblame_message_template = '<author> • <date> • <summary>'
 vim.g.gitblame_date_format = '%r'
+-- Cap the commit summary so a long message doesn't crowd out the statusline.
+vim.g.gitblame_max_commit_summary_length = 40
 
 -- Diagnostic counts shown in the statusline, sourced from the native LSP client.
 local diagnostics = {
@@ -25,7 +27,9 @@ lualine.setup {
   sections = {
     lualine_a = { 'mode' },
     lualine_b = {
-      { 'filename', path = 1 } -- path = 1: show path relative to cwd
+      -- path = 1: show path relative to cwd. shorting_target: shorten directory
+      -- segments to leave ~40 columns for the rest of the statusline.
+      { 'filename', path = 1, shorting_target = 40 }
     },
     lualine_c = {
       diagnostics,
