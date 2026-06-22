@@ -1,6 +1,7 @@
 require('plugins')
 require('general')
 require('lsp')
+require('format')
 
 -- nvim_tree
 vim.api.nvim_create_autocmd('BufWinEnter', {

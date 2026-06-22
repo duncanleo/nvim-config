@@ -1,5 +1,10 @@
 {
   "plugins": {
+    "conform.nvim": {
+      "rev": "3543d000dafbc41cc7761d860cfdb24e82154f75",
+      "src": "https://github.com/stevearc/conform.nvim",
+      "version": "'v9.1.0'"
+    },
     "fzf": {
       "rev": "3c9965a61a842ef54e976c7195b985ee43a3e776",
       "src": "https://github.com/junegunn/fzf",
@@ -29,11 +34,6 @@
       "rev": "7a0a4a2896b715c066cfbe320bdc048091874cc6",
       "src": "https://github.com/nvzone/menu",
       "version": "'7a0a4a2896b715c066cfbe320bdc048091874cc6'"
-    },
-    "neoformat": {
-      "rev": "9d95e5ca3ab263363758d5b1d7a174a30556ab2d",
-      "src": "https://github.com/sbdchd/neoformat",
-      "version": "'9d95e5ca3ab263363758d5b1d7a174a30556ab2d'"
     },
     "nvim-lspconfig": {
       "rev": "229b79051b380377664edc4cbd534930154921a1",
