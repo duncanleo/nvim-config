@@ -27,6 +27,8 @@ simply skipped rather than erroring:
   via the server's `codeActionOnSave` setting (see `lua/lsp.lua`).
 - **biome** — JS/TS linting & formatting, served by the `biome` CLI. Install
   globally with `npm i -g @biomejs/biome`, or add it as a project devDependency.
+- **jsonls** — JSON language support, served by `vscode-json-language-server`
+  from `vscode-langservers-extracted`.
 - **tailwindcss** — Tailwind CSS class completion & linting, served by
   `tailwindcss-language-server`. Install with
   `brew install tailwindcss-language-server`. Only attaches in projects with a

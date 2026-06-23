@@ -9,6 +9,7 @@ vim.opt.completeopt = { "menuone", "noselect", "popup" }
 local servers = {
   biome = 'biome',
   eslint = 'vscode-eslint-language-server',
+  jsonls = 'vscode-json-language-server',
   oxfmt = 'oxfmt',
   oxlint = 'oxlint',
   tailwindcss = 'tailwindcss-language-server', -- brew install tailwindcss-language-server
