@@ -7,6 +7,7 @@ vim.opt.completeopt = { "menuone", "noselect", "popup" }
 -- once at startup against the cwd, so launch Neovim from the project root —
 -- which is also where nvim-tree roots itself.)
 local servers = {
+  biome = 'biome',
   eslint = 'vscode-eslint-language-server',
   oxfmt = 'oxfmt',
   oxlint = 'oxlint',
