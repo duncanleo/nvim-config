@@ -29,6 +29,9 @@ simply skipped rather than erroring:
   globally with `npm i -g @biomejs/biome`, or add it as a project devDependency.
 - **jsonls** — JSON language support, served by `vscode-json-language-server`
   from `vscode-langservers-extracted`.
+- **yamlls** — YAML language support, served by `yaml-language-server`. Install
+  globally with `npm i -g yaml-language-server`, or add it as a project
+  devDependency.
 - **tailwindcss** — Tailwind CSS class completion & linting, served by
   `tailwindcss-language-server`. Install with
   `brew install tailwindcss-language-server`. Only attaches in projects with a

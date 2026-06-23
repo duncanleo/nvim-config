@@ -14,6 +14,7 @@ local servers = {
   oxlint = 'oxlint',
   tailwindcss = 'tailwindcss-language-server', -- brew install tailwindcss-language-server
   tsgo = 'tsgo', -- @typescript/native-preview, still a preview release
+  yamlls = 'yaml-language-server',
 }
 
 local function available(bin)
