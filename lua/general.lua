@@ -2,12 +2,7 @@
 vim.api.nvim_command('autocmd VimResized * wincmd =')
 
 -- <C-l>: toggle line numbers on/off.
-vim.api.nvim_set_keymap(
-  'n',
-  '<C-l>',
-  ':set invnumber<CR>',
-  { noremap = true }
-)
+vim.api.nvim_set_keymap('n', '<C-l>', ':set invnumber<CR>', { noremap = true })
 
 -- Close the current buffer without closing its window (so it never quits Neovim
 -- or collapses the editor window into the nvim-tree pane). We switch the window

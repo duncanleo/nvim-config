@@ -1,4 +1,4 @@
-vim.opt.completeopt = { "menuone", "noselect", "popup" }
+vim.opt.completeopt = { 'menuone', 'noselect', 'popup' }
 
 -- LSP servers, each mapped to the binary it spawns (`bin`) and any Neovim-side
 -- `settings` to merge on top of nvim-lspconfig's defaults. nvim-lspconfig
@@ -13,25 +13,30 @@ vim.opt.completeopt = { "menuone", "noselect", "popup" }
 -- global `before_init` hook) keeps nvim-lspconfig's own `before_init` intact for
 -- servers like eslint/tailwindcss/oxlint that define one.
 local servers = {
-  biome  = { bin = 'biome' },
+  biome = { bin = 'biome' },
   -- Fix-on-save with ESLint, driven by the server itself: `codeActionOnSave`
   -- applies all auto-fixes (via workspace/applyEdit) on save, and `run = 'onSave'`
   -- re-lints then.
-  eslint = { bin = 'vscode-eslint-language-server', settings = {
-    format = true,
-    run = 'onSave',
-    codeActionOnSave = { enable = true, mode = 'all' },
-  } },
-  jsonls      = { bin = 'vscode-json-language-server' },
-  oxfmt       = { bin = 'oxfmt' },
-  oxlint      = { bin = 'oxlint' },
+  eslint = {
+    bin = 'vscode-eslint-language-server',
+    settings = {
+      format = true,
+      run = 'onSave',
+      codeActionOnSave = { enable = true, mode = 'all' },
+    },
+  },
+  jsonls = { bin = 'vscode-json-language-server' },
+  oxfmt = { bin = 'oxfmt' },
+  oxlint = { bin = 'oxlint' },
   tailwindcss = { bin = 'tailwindcss-language-server' }, -- brew install tailwindcss-language-server
-  tsgo        = { bin = 'tsgo' }, -- @typescript/native-preview, still a preview release
-  yamlls      = { bin = 'yaml-language-server' },
+  tsgo = { bin = 'tsgo' }, -- @typescript/native-preview, still a preview release
+  yamlls = { bin = 'yaml-language-server' },
 }
 
 local function available(bin)
-  if vim.fn.executable(bin) == 1 then return true end
+  if vim.fn.executable(bin) == 1 then
+    return true
+  end
   local root = vim.fs.root(vim.fn.getcwd(), 'node_modules')
   return root ~= nil and vim.fn.executable(root .. '/node_modules/.bin/' .. bin) == 1
 end
@@ -93,9 +98,13 @@ vim.keymap.set('i', '<C-Space>', vim.lsp.completion.get, { desc = 'trigger LSP c
 -- doesn't do this on its own.
 vim.api.nvim_create_autocmd('TextChangedI', {
   callback = function()
-    if vim.fn.pumvisible() == 1 then return end
+    if vim.fn.pumvisible() == 1 then
+      return
+    end
     local col = vim.fn.col('.') - 1
-    if col == 0 then return end
+    if col == 0 then
+      return
+    end
     local char = vim.api.nvim_get_current_line():sub(col, col)
     if char:match('[%w_]') then
       vim.lsp.completion.get()

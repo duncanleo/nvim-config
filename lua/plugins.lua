@@ -31,7 +31,9 @@ vim.api.nvim_create_autocmd('PackChanged', {
   callback = function(ev)
     local data = ev.data
     if data.spec.name == 'fzf' and (data.kind == 'install' or data.kind == 'update') then
-      vim.schedule(function() vim.fn['fzf#install']() end)
+      vim.schedule(function()
+        vim.fn['fzf#install']()
+      end)
     end
   end,
 })
