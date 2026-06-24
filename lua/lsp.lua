@@ -1,20 +1,33 @@
 vim.opt.completeopt = { "menuone", "noselect", "popup" }
 
--- LSP servers mapped to the binary each one spawns. nvim-lspconfig resolves
--- these per-project (preferring node_modules/.bin, then $PATH), so a server
--- whose binary isn't installed would fail with an ENOENT spawn error when a
--- matching file opens. Enable each only when its binary is resolvable. (Checked
--- once at startup against the cwd, so launch Neovim from the project root —
--- which is also where nvim-tree roots itself.)
+-- LSP servers, each mapped to the binary it spawns (`bin`) and any Neovim-side
+-- `settings` to merge on top of nvim-lspconfig's defaults. nvim-lspconfig
+-- resolves the binary per-project (preferring node_modules/.bin, then $PATH),
+-- so a server whose binary isn't installed would fail with an ENOENT spawn
+-- error when a matching file opens. Enable each only when its binary is
+-- resolvable. (Checked once at startup against the cwd, so launch Neovim from
+-- the project root — which is also where nvim-tree roots itself.)
+--
+-- Project-local .vscode/settings.json is layered on top of these `settings` via
+-- codesettings in the loop below; doing it per-server there (rather than a
+-- global `before_init` hook) keeps nvim-lspconfig's own `before_init` intact for
+-- servers like eslint/tailwindcss/oxlint that define one.
 local servers = {
-  biome = 'biome',
-  eslint = 'vscode-eslint-language-server',
-  jsonls = 'vscode-json-language-server',
-  oxfmt = 'oxfmt',
-  oxlint = 'oxlint',
-  tailwindcss = 'tailwindcss-language-server', -- brew install tailwindcss-language-server
-  tsgo = 'tsgo', -- @typescript/native-preview, still a preview release
-  yamlls = 'yaml-language-server',
+  biome  = { bin = 'biome' },
+  -- Fix-on-save with ESLint, driven by the server itself: `codeActionOnSave`
+  -- applies all auto-fixes (via workspace/applyEdit) on save, and `run = 'onSave'`
+  -- re-lints then.
+  eslint = { bin = 'vscode-eslint-language-server', settings = {
+    format = true,
+    run = 'onSave',
+    codeActionOnSave = { enable = true, mode = 'all' },
+  } },
+  jsonls      = { bin = 'vscode-json-language-server' },
+  oxfmt       = { bin = 'oxfmt' },
+  oxlint      = { bin = 'oxlint' },
+  tailwindcss = { bin = 'tailwindcss-language-server' }, -- brew install tailwindcss-language-server
+  tsgo        = { bin = 'tsgo' }, -- @typescript/native-preview, still a preview release
+  yamlls      = { bin = 'yaml-language-server' },
 }
 
 local function available(bin)
@@ -23,22 +36,10 @@ local function available(bin)
   return root ~= nil and vim.fn.executable(root .. '/node_modules/.bin/' .. bin) == 1
 end
 
--- Fix-on-save with ESLint, driven by the server itself: `codeActionOnSave`
--- applies all auto-fixes (via workspace/applyEdit) on save, and `run = 'onSave'`
--- re-lints then. Merged into nvim-lspconfig's default eslint config.
-vim.lsp.config('eslint', {
-  settings = {
-    format = true,
-    run = 'onSave',
-    codeActionOnSave = {
-      enable = true,
-      mode = 'all',
-    },
-  },
-})
-
-for server, bin in pairs(servers) do
-  if available(bin) then
+local codesettings = require('codesettings')
+for server, spec in pairs(servers) do
+  if available(spec.bin) then
+    vim.lsp.config(server, codesettings.with_local_settings(server, { settings = spec.settings }))
     vim.lsp.enable(server)
   end
 end
