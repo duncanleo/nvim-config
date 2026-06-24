@@ -9,6 +9,7 @@
 -- prettier entirely) instead of running both.
 require('conform').setup({
   formatters_by_ft = {
+    lua = { 'stylua' }, -- requires the `stylua` binary (brew install stylua)
     javascript = { 'prettier' },
     javascriptreact = { 'prettier' },
     typescript = { 'prettier' },

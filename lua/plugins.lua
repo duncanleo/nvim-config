@@ -3,6 +3,10 @@
 -- immediately, in the order listed below (devicons before its consumers).
 local vim = vim
 
+-- The version columns below are hand-aligned for readability, so this block is
+-- fenced from StyLua. The directive comment must be exactly `stylua: ignore
+-- start` (no trailing text) or it's silently ignored.
+-- stylua: ignore start
 vim.pack.add({
   { src = 'https://github.com/junegunn/fzf',                    version = '3c9965a61a842ef54e976c7195b985ee43a3e776' },
   { src = 'https://github.com/junegunn/fzf.vim',                version = 'd2a59a992a2455f609c0fde2ebd84427ea8f919a' },
@@ -17,6 +21,7 @@ vim.pack.add({
   { src = 'https://github.com/OXY2DEV/markview.nvim',           version = 'v28.3.0' },
   { src = 'https://github.com/mrjones2014/codesettings.nvim',   version = 'v1.6.7' },
 })
+-- stylua: ignore end
 
 -- Build hook for fzf, replacing the old vim-plug `do` that ran fzf#install().
 -- vim.pack has no per-plugin build field, so run it on install/update instead.
