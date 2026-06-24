@@ -10,8 +10,9 @@ colorscheme that inherits your terminal's 16-color palette (`termguicolors` off)
 - **A Nerd Font** — for `nvim-web-devicons` file icons and the diagnostic /
   statusline glyphs.
 - **fzf** — the `junegunn/fzf` plugin builds its own binary on install (handled by
-  the `PackChanged` hook in `lua/plugins.lua`); install [ripgrep](https://github.com/BurntSushi/ripgrep)
-  too for `:Rg` and faster `:Files`.
+  the `PackChanged` hook in `lua/plugins.lua`); install
+  [ripgrep](https://github.com/BurntSushi/ripgrep) too for `:Rg` and faster
+  `:Files` (in the [Homebrew](#homebrew-dependencies) block below).
 
 ### Language servers (optional, enabled when present)
 LSP servers are external binaries, resolved per-project (preferring
@@ -22,9 +23,9 @@ simply skipped rather than erroring:
   Only enabled when a `tsgo` binary is resolvable from the launch directory
   (see `lua/lsp.lua`).
 - **eslint** — JS/TS linting, served by `vscode-eslint-language-server` from
-  [`vscode-langservers-extracted`](https://formulae.brew.sh/formula/vscode-langservers-extracted).
-  Install with `brew install vscode-langservers-extracted`. Fix-on-save is enabled
-  via the server's `codeActionOnSave` setting (see `lua/lsp.lua`).
+  [`vscode-langservers-extracted`](https://formulae.brew.sh/formula/vscode-langservers-extracted)
+  (Homebrew — see above). Fix-on-save is enabled via the server's
+  `codeActionOnSave` setting (see `lua/lsp.lua`).
 - **biome** — JS/TS linting & formatting, served by the `biome` CLI. Install
   globally with `npm i -g @biomejs/biome`, or add it as a project devDependency.
 - **jsonls** — JSON language support, served by `vscode-json-language-server`
@@ -33,10 +34,36 @@ simply skipped rather than erroring:
   globally with `npm i -g yaml-language-server`, or add it as a project
   devDependency.
 - **tailwindcss** — Tailwind CSS class completion & linting, served by
-  `tailwindcss-language-server`. Install with
-  `brew install tailwindcss-language-server`. Only attaches in projects with a
-  Tailwind config (see `lua/lsp.lua`).
+  `tailwindcss-language-server` (Homebrew — see above). Only attaches in projects
+  with a Tailwind config (see `lua/lsp.lua`).
 - **oxlint**, **oxfmt** — JS/TS linting & formatting.
+
+### Formatting
+Formatting runs through `conform.nvim` (format-on-save, or `<leader>f` manually;
+see `lua/format.lua`). Like the language servers, formatters are external
+binaries — a missing one is skipped rather than erroring.
+- **stylua** — Lua formatter (Homebrew — see above). Style is pinned in
+  `stylua.toml` (2-space indent, single quotes, 120 cols). Without the binary,
+  conform silently skips `.lua` files.
+- **prettier** — web filetypes (JS/TS, JSON, CSS, HTML, YAML, Markdown). Resolved
+  per-project from `node_modules/.bin`, so it only runs where the project has it.
+
+### Homebrew dependencies
+Everything this config installs via Homebrew, in one command:
+
+```sh
+brew install neovim ripgrep stylua vscode-langservers-extracted tailwindcss-language-server
+```
+
+- **neovim** — 0.12+ is required (built-in `vim.pack`).
+- **ripgrep** — powers `:Rg` and faster `:Files`.
+- **stylua** — Lua formatter (see [Formatting](#formatting)).
+- **vscode-langservers-extracted** — provides the `eslint` and `jsonls` servers.
+- **tailwindcss-language-server** — Tailwind class completion & linting.
+
+The remaining language servers are installed via npm rather than Homebrew — see
+[Language servers](#language-servers-optional-enabled-when-present) for `tsgo`,
+`biome`, and `yamlls`. A Nerd Font is also required for icons/glyphs.
 
 ### Installation
 Clone this into `.config/nvim`. Plugins install automatically on first launch,

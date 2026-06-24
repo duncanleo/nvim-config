@@ -18,3 +18,19 @@ Key behavior to know:
   remove a plugin.)
 - Plugins live on disk under
   `~/.local/share/nvim/site/pack/core/opt/<plugin-name>/`.
+
+## Formatting (conform.nvim)
+
+Formatting is run through `conform.nvim`, configured in `lua/format.lua`
+(format-on-save + `<leader>f`). Lua is formatted by **StyLua**, web filetypes by
+prettier.
+
+- **StyLua requires the `stylua` binary on `PATH`**: `brew install stylua`.
+  Without it, conform silently skips Lua files. Style is pinned in `stylua.toml`
+  (2-space indent, single quotes, 120 cols) to match the existing config.
+- Format the whole config from the shell with `stylua lua/ init.lua colors/`, or
+  check without writing via `stylua --check ...`.
+- To keep hand-aligned blocks (e.g. the `version =` columns in `lua/plugins.lua`)
+  from being collapsed, fence them with `-- stylua: ignore start` /
+  `-- stylua: ignore end`. The directive comment must be **exactly** that text —
+  any trailing text on the same line makes StyLua silently ignore the directive.
