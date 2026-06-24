@@ -19,6 +19,11 @@ vim.g.colors_name = 'ansi'
 -- `:set background=light`) can drive it; it falls back to dark when unknown.
 local light = vim.o.background == 'light'
 
+-- "Default text" foreground. Groups that want the normal text colour can't use
+-- the themeable white (15): it's readable on a dark theme but vanishes on a
+-- light one. Flip to black (0) under a light background so it stays legible.
+local fg = light and 0 or 15
+
 local function hi(group, opts)
   vim.api.nvim_set_hl(0, group, opts)
 end
@@ -129,7 +134,7 @@ hi('FloatBorder', { ctermfg = 7, ctermbg = 0 })
 hi('FloatShadow', { ctermfg = 15, ctermbg = 0 })
 
 -- Treesitter
-hi('@variable', { ctermfg = 15 })
+hi('@variable', { ctermfg = fg })
 hi('@variable.builtin', { ctermfg = 1 })
 hi('@variable.parameter', { ctermfg = 1 })
 hi('@variable.member', { ctermfg = 1 })
@@ -146,15 +151,15 @@ hi('@keyword.coroutine', { ctermfg = 1 })
 hi('@keyword.function', { ctermfg = 5 })
 hi('@keyword.return', { ctermfg = 5 })
 hi('@keyword.export', { ctermfg = 14 })
-hi('@punctuation.bracket', { ctermfg = 15 })
+hi('@punctuation.bracket', { ctermfg = fg })
 hi('@comment.error', { ctermfg = 0, ctermbg = 9 })
 hi('@comment.warning', { ctermfg = 0, ctermbg = 11 })
 hi('@comment.todo', { ctermfg = 0, ctermbg = 12 })
 hi('@comment.note', { ctermfg = 0, ctermbg = 14 })
-hi('@markup', { ctermfg = 15 })
-hi('@markup.strong', { ctermfg = 15, cterm = { bold = true } })
-hi('@markup.italic', { ctermfg = 15, cterm = { italic = true } })
-hi('@markup.strikethrough', { ctermfg = 15, cterm = { strikethrough = true } })
+hi('@markup', { ctermfg = fg })
+hi('@markup.strong', { ctermfg = fg, cterm = { bold = true } })
+hi('@markup.italic', { ctermfg = fg, cterm = { italic = true } })
+hi('@markup.strikethrough', { ctermfg = fg, cterm = { strikethrough = true } })
 hi('@markup.heading', { ctermfg = 4, cterm = { bold = true } })
 hi('@markup.quote', { ctermfg = 6 })
 hi('@markup.math', { ctermfg = 4 })
@@ -165,7 +170,7 @@ hi('@markup.list.unchecked', { ctermfg = 7 })
 hi('@tag', { ctermfg = 5 })
 hi('@tag.builtin', { ctermfg = 6 })
 hi('@tag.attribute', { ctermfg = 4 })
-hi('@tag.delimiter', { ctermfg = 15 })
+hi('@tag.delimiter', { ctermfg = fg })
 
 -- Treesitter links to standard groups
 link('@variable.parameter.builtin', '@variable.parameter')
