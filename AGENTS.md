@@ -1,5 +1,17 @@
 # Notes for agents working in this Neovim config
 
+## Commit conventions
+
+When creating commits, use the Conventional Commits format for the subject line,
+for example `feat: add picker shortcut` or `fix(format): guard missing stylua`.
+
+Agent-authored commits must also include a `Co-Authored-By` trailer that signs
+off with the agent's own identity, not the user's identity, for example:
+
+```text
+Co-Authored-By: Agent Name <agent@example.com>
+```
+
 ## Plugin management (vim.pack)
 
 Plugins are managed by Neovim's native `vim.pack` (Neovim 0.12+), configured in
