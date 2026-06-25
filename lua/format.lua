@@ -1,22 +1,28 @@
--- Formatting via conform.nvim. Prettier is the formatter for web filetypes; it
--- auto-resolves the project-local node_modules/.bin/prettier, so it only runs on
--- projects that actually have prettier installed (otherwise conform skips it).
+-- Formatting via conform.nvim. Biome is preferred for JS/TS/JSON/CSS when a
+-- project has biome.json/biome.jsonc; otherwise conform falls back to Prettier.
+-- Both formatters auto-resolve project-local node_modules/.bin binaries.
 --
--- NOTE: oxfmt is also enabled as an LSP formatter (see lsp.lua), and eslint runs
--- codeActionOnSave on save. `lsp_format = 'never'` keeps conform from invoking
--- the LSP formatter, so prettier and oxfmt don't both rewrite a buffer on save.
--- If you'd rather oxfmt own JS/TS formatting, drop those entries here (or remove
--- prettier entirely) instead of running both.
+-- NOTE: Biome/oxfmt are also enabled as LSP formatters (see lsp.lua), and eslint
+-- runs codeActionOnSave on save. `lsp_format = 'never'` keeps conform from
+-- invoking LSP formatting, so only the explicit conform formatter rewrites a
+-- buffer on save.
+local web_formatter = { 'biome', 'prettier', stop_after_first = true }
+
 require('conform').setup({
+  formatters = {
+    biome = {
+      require_cwd = true,
+    },
+  },
   formatters_by_ft = {
     lua = { 'stylua' }, -- requires the `stylua` binary (brew install stylua)
-    javascript = { 'prettier' },
-    javascriptreact = { 'prettier' },
-    typescript = { 'prettier' },
-    typescriptreact = { 'prettier' },
-    json = { 'prettier' },
-    jsonc = { 'prettier' },
-    css = { 'prettier' },
+    javascript = web_formatter,
+    javascriptreact = web_formatter,
+    typescript = web_formatter,
+    typescriptreact = web_formatter,
+    json = web_formatter,
+    jsonc = web_formatter,
+    css = web_formatter,
     html = { 'prettier' },
     yaml = { 'prettier' },
     markdown = { 'prettier' },
