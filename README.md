@@ -6,49 +6,39 @@ A native-Lua setup: plugins via the built-in `vim.pack`, native LSP + completion
 colorscheme that inherits your terminal's 16-color palette (`termguicolors` off).
 
 ### Requirements
-- **Neovim 0.12+** — plugins are managed by the built-in `vim.pack`.
-- **A Nerd Font** — for `nvim-web-devicons` file icons and the diagnostic /
-  statusline glyphs.
-- **fzf** — the `junegunn/fzf` plugin builds its own binary on install (handled by
-  the `PackChanged` hook in `lua/plugins.lua`); install
-  [ripgrep](https://github.com/BurntSushi/ripgrep) too for `:Rg` and faster
-  `:Files` (in the [Homebrew](#homebrew-dependencies) block below).
+
+| Requirement | Notes |
+| --- | --- |
+| Neovim 0.12+ | Plugins are managed by the built-in `vim.pack`. |
+| A Nerd Font | Required for `nvim-web-devicons` file icons and diagnostic / statusline glyphs. |
+| fzf | The `junegunn/fzf` plugin builds its own binary on install via the `PackChanged` hook in `lua/plugins.lua`. |
+| [ripgrep](https://github.com/BurntSushi/ripgrep) | Powers `:Rg` and faster `:Files`; included in the [Homebrew](#homebrew-dependencies) block below. |
 
 ### Language servers (optional, enabled when present)
 LSP servers are external binaries, resolved per-project (preferring
 `node_modules/.bin`, then `$PATH`). They're enabled lazily — a missing one is
 simply skipped rather than erroring:
-- **tsgo** — `@typescript/native-preview` (TypeScript). Install globally with
-  `npm i -g @typescript/native-preview`, or add it as a project devDependency.
-  Only enabled when a `tsgo` binary is resolvable from the launch directory
-  (see `lua/lsp.lua`).
-- **vtsls** — TypeScript language server fallback, served by `vtsls`
-  (Homebrew — see below). Skipped when `tsgo` is available.
-- **eslint** — JS/TS linting, served by `vscode-eslint-language-server` from
-  [`vscode-langservers-extracted`](https://formulae.brew.sh/formula/vscode-langservers-extracted)
-  (Homebrew — see above). Fix-on-save is enabled via the server's
-  `codeActionOnSave` setting (see `lua/lsp.lua`).
-- **biome** — JS/TS linting & formatting, served by the `biome` CLI. Install
-  globally with `npm i -g @biomejs/biome`, or add it as a project devDependency.
-- **jsonls** — JSON language support, served by `vscode-json-language-server`
-  from `vscode-langservers-extracted`.
-- **yamlls** — YAML language support, served by `yaml-language-server`. Install
-  globally with `npm i -g yaml-language-server`, or add it as a project
-  devDependency.
-- **tailwindcss** — Tailwind CSS class completion & linting, served by
-  `tailwindcss-language-server` (Homebrew — see above). Only attaches in projects
-  with a Tailwind config (see `lua/lsp.lua`).
-- **oxlint**, **oxfmt** — JS/TS linting & formatting.
+
+| Server | Purpose | Provided by / install source | Notes |
+| --- | --- | --- | --- |
+| `tsgo` | TypeScript | `@typescript/native-preview` via `npm i -g @typescript/native-preview`, or as a project devDependency | Only enabled when a `tsgo` binary is resolvable from the launch directory; see `lua/lsp.lua`. |
+| `vtsls` | TypeScript fallback | Homebrew package `vtsls` | Skipped when `tsgo` is available. |
+| `eslint` | JS/TS linting | `vscode-eslint-language-server` from [`vscode-langservers-extracted`](https://formulae.brew.sh/formula/vscode-langservers-extracted) | Fix-on-save is enabled via the server's `codeActionOnSave` setting; see `lua/lsp.lua`. |
+| `biome` | JS/TS linting & formatting | `biome` CLI via `npm i -g @biomejs/biome`, or as a project devDependency | Resolved per-project before `$PATH`. |
+| `jsonls` | JSON language support | `vscode-json-language-server` from `vscode-langservers-extracted` | Resolved per-project before `$PATH`. |
+| `yamlls` | YAML language support | `yaml-language-server` via `npm i -g yaml-language-server`, or as a project devDependency | Resolved per-project before `$PATH`. |
+| `tailwindcss` | Tailwind CSS class completion & linting | Homebrew package `tailwindcss-language-server` | Only attaches in projects with a Tailwind config; see `lua/lsp.lua`. |
+| `oxlint` / `oxfmt` | JS/TS linting & formatting | External binaries | Enabled when present. |
 
 ### Formatting
 Formatting runs through `conform.nvim` (format-on-save, or `<leader>f` manually;
 see `lua/format.lua`). Like the language servers, formatters are external
 binaries — a missing one is skipped rather than erroring.
-- **stylua** — Lua formatter (Homebrew — see above). Style is pinned in
-  `stylua.toml` (2-space indent, single quotes, 120 cols). Without the binary,
-  conform silently skips `.lua` files.
-- **prettier** — web filetypes (JS/TS, JSON, CSS, HTML, YAML, Markdown). Resolved
-  per-project from `node_modules/.bin`, so it only runs where the project has it.
+
+| Formatter | Filetypes | Provided by / install source | Notes |
+| --- | --- | --- | --- |
+| `stylua` | Lua | Homebrew package `stylua` | Style is pinned in `stylua.toml` (2-space indent, single quotes, 120 cols). Without the binary, conform silently skips `.lua` files. |
+| `prettier` | JS/TS, JSON, CSS, HTML, YAML, Markdown | Project-local `node_modules/.bin` | Only runs where the project has it. |
 
 ### Homebrew dependencies
 Everything this config installs via Homebrew, in one command:
@@ -57,12 +47,14 @@ Everything this config installs via Homebrew, in one command:
 brew install neovim ripgrep stylua vscode-langservers-extracted tailwindcss-language-server vtsls
 ```
 
-- **neovim** — 0.12+ is required (built-in `vim.pack`).
-- **ripgrep** — powers `:Rg` and faster `:Files`.
-- **stylua** — Lua formatter (see [Formatting](#formatting)).
-- **vscode-langservers-extracted** — provides the `eslint` and `jsonls` servers.
-- **tailwindcss-language-server** — Tailwind class completion & linting.
-- **vtsls** — TypeScript language server fallback when `tsgo` is unavailable.
+| Package | Used for |
+| --- | --- |
+| `neovim` | Neovim 0.12+ with built-in `vim.pack`. |
+| `ripgrep` | `:Rg` and faster `:Files`. |
+| `stylua` | Lua formatting; see [Formatting](#formatting). |
+| `vscode-langservers-extracted` | `eslint` and `jsonls` language servers. |
+| `tailwindcss-language-server` | Tailwind class completion & linting. |
+| `vtsls` | TypeScript language server fallback when `tsgo` is unavailable. |
 
 The remaining language servers are installed via npm rather than Homebrew — see
 [Language servers](#language-servers-optional-enabled-when-present) for `tsgo`,
