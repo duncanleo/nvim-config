@@ -30,6 +30,7 @@ local servers = {
   oxlint = { bin = 'oxlint' },
   tailwindcss = { bin = 'tailwindcss-language-server' }, -- brew install tailwindcss-language-server
   tsgo = { bin = 'tsgo' }, -- @typescript/native-preview, still a preview release
+  vtsls = { bin = 'vtsls', blocked_by = 'tsgo' }, -- brew install vtsls
   yamlls = { bin = 'yaml-language-server' },
 }
 
@@ -42,8 +43,15 @@ local function available(bin)
 end
 
 local codesettings = require('codesettings')
+local server_available = {}
+
 for server, spec in pairs(servers) do
-  if available(spec.bin) then
+  server_available[server] = available(spec.bin)
+end
+
+for server, spec in pairs(servers) do
+  local blocked_by = spec.blocked_by
+  if server_available[server] and not (blocked_by and server_available[blocked_by]) then
     vim.lsp.config(server, codesettings.with_local_settings(server, { settings = spec.settings }))
     vim.lsp.enable(server)
   end

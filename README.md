@@ -22,6 +22,8 @@ simply skipped rather than erroring:
   `npm i -g @typescript/native-preview`, or add it as a project devDependency.
   Only enabled when a `tsgo` binary is resolvable from the launch directory
   (see `lua/lsp.lua`).
+- **vtsls** — TypeScript language server fallback, served by `vtsls`
+  (Homebrew — see below). Skipped when `tsgo` is available.
 - **eslint** — JS/TS linting, served by `vscode-eslint-language-server` from
   [`vscode-langservers-extracted`](https://formulae.brew.sh/formula/vscode-langservers-extracted)
   (Homebrew — see above). Fix-on-save is enabled via the server's
@@ -52,7 +54,7 @@ binaries — a missing one is skipped rather than erroring.
 Everything this config installs via Homebrew, in one command:
 
 ```sh
-brew install neovim ripgrep stylua vscode-langservers-extracted tailwindcss-language-server
+brew install neovim ripgrep stylua vscode-langservers-extracted tailwindcss-language-server vtsls
 ```
 
 - **neovim** — 0.12+ is required (built-in `vim.pack`).
@@ -60,6 +62,7 @@ brew install neovim ripgrep stylua vscode-langservers-extracted tailwindcss-lang
 - **stylua** — Lua formatter (see [Formatting](#formatting)).
 - **vscode-langservers-extracted** — provides the `eslint` and `jsonls` servers.
 - **tailwindcss-language-server** — Tailwind class completion & linting.
+- **vtsls** — TypeScript language server fallback when `tsgo` is unavailable.
 
 The remaining language servers are installed via npm rather than Homebrew — see
 [Language servers](#language-servers-optional-enabled-when-present) for `tsgo`,
