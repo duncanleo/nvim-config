@@ -24,7 +24,7 @@ simply skipped rather than erroring:
 | `tsgo` | TypeScript | `@typescript/native-preview` via `npm i -g @typescript/native-preview`, or as a project devDependency | Only enabled when a `tsgo` binary is resolvable from the launch directory; see `lua/lsp.lua`. |
 | `vtsls` | TypeScript fallback | Homebrew package `vtsls` | Skipped when `tsgo` is available. |
 | `eslint` | JS/TS linting | `vscode-eslint-language-server` from [`vscode-langservers-extracted`](https://formulae.brew.sh/formula/vscode-langservers-extracted) | Fix-on-save is enabled via the server's `codeActionOnSave` setting; see `lua/lsp.lua`. |
-| `biome` | JS/TS linting & formatting | `biome` CLI via `npm i -g @biomejs/biome`, or as a project devDependency | Resolved per-project before `$PATH`. |
+| `biome` | JS/TS linting, formatting, import sorting | `biome` CLI via `npm i -g @biomejs/biome`, or as a project devDependency | Resolved per-project before `$PATH`; import sorting runs on save via conform.nvim. |
 | `jsonls` | JSON language support | `vscode-json-language-server` from `vscode-langservers-extracted` | Resolved per-project before `$PATH`. |
 | `yamlls` | YAML language support | `yaml-language-server` via `npm i -g yaml-language-server`, or as a project devDependency | Resolved per-project before `$PATH`. |
 | `tailwindcss` | Tailwind CSS class completion & linting | Homebrew package `tailwindcss-language-server` | Only attaches in projects with a Tailwind config; see `lua/lsp.lua`. |

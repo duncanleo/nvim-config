@@ -8,18 +8,33 @@
 -- buffer on save.
 local web_formatter = { 'oxfmt', 'biome', 'prettier', stop_after_first = true }
 
+local function web_formatter_with_imports(bufnr)
+  if require('conform').get_formatter_info('oxfmt', bufnr).available then
+    return { 'oxfmt' }
+  end
+
+  if require('conform').get_formatter_info('biome-organize-imports', bufnr).available then
+    return { 'biome-organize-imports', 'biome' }
+  end
+
+  return { 'prettier' }
+end
+
 require('conform').setup({
   formatters = {
     biome = {
       require_cwd = true,
     },
+    ['biome-organize-imports'] = {
+      require_cwd = true,
+    },
   },
   formatters_by_ft = {
     lua = { 'stylua' }, -- requires the `stylua` binary (brew install stylua)
-    javascript = web_formatter,
-    javascriptreact = web_formatter,
-    typescript = web_formatter,
-    typescriptreact = web_formatter,
+    javascript = web_formatter_with_imports,
+    javascriptreact = web_formatter_with_imports,
+    typescript = web_formatter_with_imports,
+    typescriptreact = web_formatter_with_imports,
     json = web_formatter,
     jsonc = web_formatter,
     css = web_formatter,
