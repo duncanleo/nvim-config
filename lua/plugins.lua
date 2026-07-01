@@ -37,3 +37,7 @@ vim.api.nvim_create_autocmd('PackChanged', {
     end
   end,
 })
+
+vim.api.nvim_create_user_command('PackUpdate', function()
+  vim.pack.update()
+end, {})
