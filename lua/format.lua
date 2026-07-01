@@ -6,7 +6,7 @@
 -- runs codeActionOnSave on save. `lsp_format = 'never'` keeps conform from
 -- invoking LSP formatting, so only the explicit conform formatter rewrites a
 -- buffer on save.
-local web_formatter = { 'biome', 'prettier', stop_after_first = true }
+local web_formatter = { 'oxfmt', 'biome', 'prettier', stop_after_first = true }
 
 require('conform').setup({
   formatters = {
