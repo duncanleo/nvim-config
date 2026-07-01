@@ -17,7 +17,7 @@ vim.pack.add({
   { src = 'https://github.com/f-person/git-blame.nvim',         version = '5c536e2d4134d064aa3f41575280bc8a2a0e03d7' },
   { src = 'https://github.com/nvzone/volt',                     version = '620de1321f275ec9d80028c68d1b88b409c0c8b1' },
   { src = 'https://github.com/nvzone/menu',                     version = '7a0a4a2896b715c066cfbe320bdc048091874cc6' },
-  { src = 'https://github.com/stevearc/conform.nvim',           version = 'v9.1.0' },
+  { src = 'https://github.com/stevearc/conform.nvim',           version = '619363c30309d29ffa631e67c8183f2a72caa373' },
   { src = 'https://github.com/OXY2DEV/markview.nvim',           version = 'v28.3.0' },
   { src = 'https://github.com/mrjones2014/codesettings.nvim',   version = 'v1.6.7' },
 })
