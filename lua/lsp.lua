@@ -29,6 +29,7 @@ local servers = {
   oxfmt = { bin = 'oxfmt' },
   oxlint = { bin = 'oxlint' },
   tailwindcss = { bin = 'tailwindcss-language-server' }, -- brew install tailwindcss-language-server
+  tombi = { bin = 'tombi' }, -- brew install tombi
   tsgo = { bin = 'tsgo' }, -- @typescript/native-preview, still a preview release
   vtsls = { bin = 'vtsls', blocked_by = 'tsgo' }, -- brew install vtsls
   yamlls = { bin = 'yaml-language-server' },
