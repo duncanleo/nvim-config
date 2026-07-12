@@ -26,7 +26,7 @@ simply skipped rather than erroring:
 | `eslint` | JS/TS linting | `vscode-eslint-language-server` from [`vscode-langservers-extracted`](https://formulae.brew.sh/formula/vscode-langservers-extracted) | Fix-on-save is enabled via the server's `codeActionOnSave` setting; see `lua/lsp.lua`. |
 | `biome` | JS/TS linting, formatting, import sorting | `biome` CLI via `npm i -g @biomejs/biome`, or as a project devDependency | Resolved per-project before `$PATH`; import sorting runs on save via conform.nvim. |
 | `jsonls` | JSON language support | `vscode-json-language-server` from `vscode-langservers-extracted` | Resolved per-project before `$PATH`. |
-| `yamlls` | YAML language support | `yaml-language-server` via `npm i -g yaml-language-server`, or as a project devDependency | Resolved per-project before `$PATH`. |
+| `yamlls` | YAML language support | Homebrew package `yaml-language-server`, or as a project devDependency | Resolved per-project before `$PATH`. |
 | `tombi` | TOML completion, diagnostics, schema support, and formatting | Homebrew package `tombi` | Uses nvim-lspconfig's `tombi lsp` configuration; enabled when the binary is present. |
 | `tailwindcss` | Tailwind CSS class completion & linting | Homebrew package `tailwindcss-language-server` | Only attaches in projects with a Tailwind config; see `lua/lsp.lua`. |
 | `oxlint` / `oxfmt` | JS/TS linting & formatting | External binaries | Enabled when present. |
@@ -45,7 +45,7 @@ binaries — a missing one is skipped rather than erroring.
 Everything this config installs via Homebrew, in one command:
 
 ```sh
-brew install neovim ripgrep stylua tombi vscode-langservers-extracted tailwindcss-language-server vtsls
+brew install neovim ripgrep stylua tombi vscode-langservers-extracted tailwindcss-language-server vtsls yaml-language-server
 ```
 
 | Package | Used for |
@@ -57,10 +57,11 @@ brew install neovim ripgrep stylua tombi vscode-langservers-extracted tailwindcs
 | `vscode-langservers-extracted` | `eslint` and `jsonls` language servers. |
 | `tailwindcss-language-server` | Tailwind class completion & linting. |
 | `vtsls` | TypeScript language server fallback when `tsgo` is unavailable. |
+| `yaml-language-server` | YAML language server. |
 
 The remaining language servers are installed via npm rather than Homebrew — see
 [Language servers](#language-servers-optional-enabled-when-present) for `tsgo`,
-`biome`, and `yamlls`. A Nerd Font is also required for icons/glyphs.
+and `biome`. A Nerd Font is also required for icons/glyphs.
 
 ### Installation
 Clone this into `.config/nvim`. Plugins install automatically on first launch,
