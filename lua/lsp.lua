@@ -14,15 +14,12 @@ vim.opt.completeopt = { 'menuone', 'noselect', 'popup' }
 -- servers like eslint/tailwindcss/oxlint that define one.
 local servers = {
   biome = { bin = 'biome' },
-  -- Fix-on-save with ESLint, driven by the server itself: `codeActionOnSave`
-  -- applies all auto-fixes (via workspace/applyEdit) on save, and `run = 'onSave'`
-  -- re-lints then.
+  -- `run = 'onSave'` refreshes diagnostics after the fix-all save hook below.
   eslint = {
     bin = 'vscode-eslint-language-server',
     settings = {
       format = true,
       run = 'onSave',
-      codeActionOnSave = { enable = true, mode = 'all' },
     },
   },
   jsonls = { bin = 'vscode-json-language-server' },
@@ -34,6 +31,22 @@ local servers = {
   vtsls = { bin = 'vtsls', blocked_by = 'tsgo' }, -- brew install vtsls
   yamlls = { bin = 'yaml-language-server' },
 }
+
+-- nvim-lspconfig supplies these buffer-local commands from each server's
+-- default `on_attach`. Run them immediately before a write, rather than using
+-- ESLint's setting-specific codeActionOnSave option, so both linters behave
+-- consistently.
+local fix_all_commands = {
+  eslint = 'LspEslintFixAll',
+  oxlint = 'LspOxlintFixAll',
+}
+
+-- Supplying our own `on_attach` replaces this default, so save it first. The
+-- default callback creates the corresponding `:Lsp*FixAll` buffer command.
+local base_on_attach = {}
+for server in pairs(fix_all_commands) do
+  base_on_attach[server] = vim.lsp.config[server].on_attach
+end
 
 local function available(bin)
   if vim.fn.executable(bin) == 1 then
@@ -53,7 +66,28 @@ end
 for server, spec in pairs(servers) do
   local blocked_by = spec.blocked_by
   if server_available[server] and not (blocked_by and server_available[blocked_by]) then
-    vim.lsp.config(server, codesettings.with_local_settings(server, { settings = spec.settings }))
+    local config = codesettings.with_local_settings(server, { settings = spec.settings })
+    local fix_all_command = fix_all_commands[server]
+    local default_on_attach = base_on_attach[server]
+
+    if fix_all_command and default_on_attach then
+      config.on_attach = function(client, bufnr)
+        -- Create the server's buffer-local fix command before the save hook
+        -- tries to execute it.
+        default_on_attach(client, bufnr)
+
+        vim.api.nvim_create_autocmd('BufWritePre', {
+          -- Clearing this server/buffer group makes an LSP reattach replace,
+          -- rather than duplicate, its existing save hook.
+          group = vim.api.nvim_create_augroup(('LspFixAllOnSave_%s_%d'):format(server, bufnr), { clear = true }),
+          buffer = bufnr,
+          command = fix_all_command,
+          desc = ('apply %s fixes before saving'):format(server),
+        })
+      end
+    end
+
+    vim.lsp.config(server, config)
     vim.lsp.enable(server)
   end
 end
