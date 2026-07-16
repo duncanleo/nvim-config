@@ -31,6 +31,7 @@ simply skipped rather than erroring:
 | `tombi` | TOML completion, diagnostics, schema support, and formatting | Homebrew package `tombi` | Uses nvim-lspconfig's `tombi lsp` configuration; enabled when the binary is present. |
 | `tailwindcss` | Tailwind CSS class completion & linting | Homebrew package `tailwindcss-language-server` | Only attaches in projects with a Tailwind config; see `lua/lsp.lua`. |
 | `oxlint` / `oxfmt` | JS/TS linting & formatting | External binaries | Enabled when present. |
+| `rust_analyzer` | Rust | Homebrew package `rust-analyzer`, or `rustup component add rust-analyzer` | Enabled when the `rust-analyzer` binary is present. |
 
 ### Formatting
 Formatting runs through `conform.nvim` (format-on-save, or `<leader>f` manually;
@@ -40,6 +41,7 @@ binaries — a missing one is skipped rather than erroring.
 | Formatter | Filetypes | Provided by / install source | Notes |
 | --- | --- | --- | --- |
 | `gofmt` | Go | Included with the Go toolchain | Formats Go files on save. |
+| `rustfmt` | Rust | `rustup component add rustfmt` | Formats Rust files on save. |
 | `stylua` | Lua | Homebrew package `stylua` | Style is pinned in `stylua.toml` (2-space indent, single quotes, 120 cols). Without the binary, conform silently skips `.lua` files. |
 | `prettier` | JS/TS, JSON, CSS, HTML, YAML, Markdown | Project-local `node_modules/.bin` | Only runs where the project has it. |
 
@@ -47,7 +49,7 @@ binaries — a missing one is skipped rather than erroring.
 Everything this config installs via Homebrew, in one command:
 
 ```sh
-brew install neovim ripgrep gopls stylua tombi vscode-langservers-extracted tailwindcss-language-server vtsls yaml-language-server
+brew install neovim ripgrep gopls rust-analyzer stylua tombi vscode-langservers-extracted tailwindcss-language-server vtsls yaml-language-server
 ```
 
 | Package | Used for |
@@ -55,6 +57,7 @@ brew install neovim ripgrep gopls stylua tombi vscode-langservers-extracted tail
 | `neovim` | Neovim 0.12+ with built-in `vim.pack`. |
 | `ripgrep` | `:Rg` and faster `:Files`. |
 | `gopls` | Go language server. |
+| `rust-analyzer` | Rust language server. |
 | `stylua` | Lua formatting; see [Formatting](#formatting). |
 | `tombi` | TOML language server. |
 | `vscode-langservers-extracted` | `eslint` and `jsonls` language servers. |

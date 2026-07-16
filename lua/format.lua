@@ -42,6 +42,7 @@ require('conform').setup({
     html = { 'prettier' },
     yaml = { 'prettier' },
     markdown = { 'prettier' },
+    rust = { 'rustfmt' },
   },
   format_on_save = {
     timeout_ms = 2000,

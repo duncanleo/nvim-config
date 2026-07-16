@@ -26,6 +26,7 @@ local servers = {
   jsonls = { bin = 'vscode-json-language-server' },
   oxfmt = { bin = 'oxfmt' },
   oxlint = { bin = 'oxlint' },
+  rust_analyzer = { bin = 'rust-analyzer' },
   tailwindcss = { bin = 'tailwindcss-language-server' }, -- brew install tailwindcss-language-server
   tombi = { bin = 'tombi' }, -- brew install tombi
   tsgo = { bin = 'tsgo' }, -- @typescript/native-preview, still a preview release
