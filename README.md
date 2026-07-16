@@ -25,6 +25,7 @@ simply skipped rather than erroring:
 | `vtsls` | TypeScript fallback | Homebrew package `vtsls` | Skipped when `tsgo` is available. |
 | `eslint` | JS/TS linting | `vscode-eslint-language-server` from [`vscode-langservers-extracted`](https://formulae.brew.sh/formula/vscode-langservers-extracted) | Fix-on-save is enabled via the server's `codeActionOnSave` setting; see `lua/lsp.lua`. |
 | `biome` | JS/TS linting, formatting, import sorting | `biome` CLI via `npm i -g @biomejs/biome`, or as a project devDependency | Resolved per-project before `$PATH`; import sorting runs on save via conform.nvim. |
+| `gopls` | Go | Homebrew package `gopls`, or `go install golang.org/x/tools/gopls@latest` | Enabled when the `gopls` binary is present. |
 | `jsonls` | JSON language support | `vscode-json-language-server` from `vscode-langservers-extracted` | Resolved per-project before `$PATH`. |
 | `yamlls` | YAML language support | Homebrew package `yaml-language-server`, or as a project devDependency | Resolved per-project before `$PATH`. |
 | `tombi` | TOML completion, diagnostics, schema support, and formatting | Homebrew package `tombi` | Uses nvim-lspconfig's `tombi lsp` configuration; enabled when the binary is present. |
@@ -38,6 +39,7 @@ binaries — a missing one is skipped rather than erroring.
 
 | Formatter | Filetypes | Provided by / install source | Notes |
 | --- | --- | --- | --- |
+| `gofmt` | Go | Included with the Go toolchain | Formats Go files on save. |
 | `stylua` | Lua | Homebrew package `stylua` | Style is pinned in `stylua.toml` (2-space indent, single quotes, 120 cols). Without the binary, conform silently skips `.lua` files. |
 | `prettier` | JS/TS, JSON, CSS, HTML, YAML, Markdown | Project-local `node_modules/.bin` | Only runs where the project has it. |
 
@@ -45,13 +47,14 @@ binaries — a missing one is skipped rather than erroring.
 Everything this config installs via Homebrew, in one command:
 
 ```sh
-brew install neovim ripgrep stylua tombi vscode-langservers-extracted tailwindcss-language-server vtsls yaml-language-server
+brew install neovim ripgrep gopls stylua tombi vscode-langservers-extracted tailwindcss-language-server vtsls yaml-language-server
 ```
 
 | Package | Used for |
 | --- | --- |
 | `neovim` | Neovim 0.12+ with built-in `vim.pack`. |
 | `ripgrep` | `:Rg` and faster `:Files`. |
+| `gopls` | Go language server. |
 | `stylua` | Lua formatting; see [Formatting](#formatting). |
 | `tombi` | TOML language server. |
 | `vscode-langservers-extracted` | `eslint` and `jsonls` language servers. |

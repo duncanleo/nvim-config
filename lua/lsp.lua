@@ -22,6 +22,7 @@ local servers = {
       run = 'onSave',
     },
   },
+  gopls = { bin = 'gopls' },
   jsonls = { bin = 'vscode-json-language-server' },
   oxfmt = { bin = 'oxfmt' },
   oxlint = { bin = 'oxlint' },

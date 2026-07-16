@@ -30,6 +30,7 @@ require('conform').setup({
     },
   },
   formatters_by_ft = {
+    go = { 'gofmt' },
     lua = { 'stylua' }, -- requires the `stylua` binary (brew install stylua)
     javascript = web_formatter_with_imports,
     javascriptreact = web_formatter_with_imports,
