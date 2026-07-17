@@ -41,10 +41,45 @@ local git_blame_items = {
   { name = 'Toggle Inline Blame', cmd = 'GitBlameToggle' },
 }
 
+local function toggle_line_comment()
+  vim.api.nvim_feedkeys(vim.keycode('gcc'), 'mx', false)
+end
+
+local function toggle_selection_comment()
+  vim.api.nvim_feedkeys(vim.keycode('gvgc'), 'mx', false)
+end
+
+local lsp_context_items = {
+  { name = 'Go to Definition', cmd = vim.lsp.buf.definition, rtxt = 'grd' },
+  { name = 'Go to Declaration', cmd = vim.lsp.buf.declaration, rtxt = 'gD' },
+  { name = 'Find All References', cmd = vim.lsp.buf.references, rtxt = 'grr' },
+  { name = 'separator' },
+  { name = 'Rename Symbol', cmd = vim.lsp.buf.rename, rtxt = 'grn' },
+  { name = 'Code Actions', cmd = vim.lsp.buf.code_action, rtxt = 'gra' },
+  { name = 'separator' },
+  { name = 'Toggle Selection Comment', cmd = toggle_selection_comment, rtxt = 'gc' },
+  { name = 'Toggle Line Comment', cmd = toggle_line_comment, rtxt = 'gcc' },
+}
+
+local replaced_default_items = {
+  ['Format Buffer'] = true,
+  ['Code Actions'] = true,
+  ['  Lsp Actions'] = true,
+}
+
 -- The plugin's bundled "default" menu, plus our Git Blame submenu. Deepcopy so
 -- repeated opens don't accumulate appended entries on the shared module table.
 local function default_menu()
-  local items = vim.deepcopy(require('menus.default'))
+  local items = vim.deepcopy(lsp_context_items)
+
+  for _, item in ipairs(require('menus.default')) do
+    if not replaced_default_items[item.name] then
+      if item.name ~= 'separator' or items[#items].name ~= 'separator' then
+        table.insert(items, vim.deepcopy(item))
+      end
+    end
+  end
+
   vim.list_extend(items, {
     { name = 'separator' },
     { name = '󰊢 Git Blame', hl = 'Exblue', items = git_blame_items },
